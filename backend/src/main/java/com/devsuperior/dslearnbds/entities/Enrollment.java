@@ -1,10 +1,13 @@
 package com.devsuperior.dslearnbds.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
@@ -26,6 +29,9 @@ public class Enrollment {
 	
 	private boolean available; // boolean com b minusculo não permite nulo, ou é true ou false. Caso queira um campo que salve nulo, tem que usar "Boolean" com b maiúsculo
 	private boolean onlyUpdate;
+	
+	@ManyToMany(mappedBy = "enrollmentsDone")
+	private Set<Lesson> lessonsDone = new HashSet<>();
 	
 	public Enrollment() {		
 	}
