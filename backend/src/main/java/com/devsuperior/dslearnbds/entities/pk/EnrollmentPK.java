@@ -9,10 +9,10 @@ import javax.persistence.ManyToOne;
 import com.devsuperior.dslearnbds.entities.Offer;
 import com.devsuperior.dslearnbds.entities.User;
 
-@Embeddable  //--usa-se @Embeddable quando se usa essa classe como atributo de outra classe. Usa-se para chave composta ou atributo composto e na classe pai coloca @EmbeddedId
+@Embeddable
 public class EnrollmentPK implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -21,7 +21,7 @@ public class EnrollmentPK implements Serializable {
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
 	
-	public EnrollmentPK() {		
+	public EnrollmentPK() {
 	}
 
 	public EnrollmentPK(User user, Offer offer) {
@@ -75,5 +75,5 @@ public class EnrollmentPK implements Serializable {
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
-	}	
+	}
 }

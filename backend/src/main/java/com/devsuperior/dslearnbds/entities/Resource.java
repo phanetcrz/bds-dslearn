@@ -15,32 +15,28 @@ import javax.persistence.Table;
 
 import com.devsuperior.dslearnbds.entities.enums.ResourceType;
 
-
 @Entity
 @Table(name = "tb_resource")
 public class Resource implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)		
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String title;
 	private String description;
 	private Integer position;
 	private String imgUri;
-	
-	//-- Tipo Enum(Enumerado) Criado da aula 05-07 Resource
 	private ResourceType type;
 	
-	@ManyToOne   					//-- Muitos para um
-	@JoinColumn(name="offer_id")
+	@ManyToOne
+	@JoinColumn(name = "offer_id")
 	private Offer offer;
+
+	@OneToMany(mappedBy = "resource")
+	private List<Section> sections = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "resource")	
-	private List<Section> sections = new ArrayList<>(); 
-	
-	public Resource() {	
+	public Resource() {
 	}
 
 	public Resource(Long id, String title, String description, Integer position, String imgUri, ResourceType type,
@@ -134,5 +130,5 @@ public class Resource implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}		
+	}
 }
