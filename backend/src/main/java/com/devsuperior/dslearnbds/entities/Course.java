@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_course")
+@Table(name = "tb_course") //05-06 Offer - um para muitos  
 public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 

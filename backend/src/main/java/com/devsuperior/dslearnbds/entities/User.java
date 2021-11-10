@@ -29,10 +29,10 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "tb_user_role",
-		joinColumns = @JoinColumn(name = "user_id"),
-		inverseJoinColumns = @JoinColumn(name = "role_id"))	
+	@ManyToMany(fetch = FetchType.EAGER) 					//-- FetchType.EAGER força, para que quando chamar o usuário, traga juntos os "roles" que são os perfis dos usuários     
+	@JoinTable(name = "tb_user_role",    					//-- joinColumns Pega da propria classe e o inverseJoinColumns pega o tipo que estiver na coleção
+		joinColumns = @JoinColumn(name = "user_id"),        //-- nome da chave estrangeira da tabela que estou relacionando que no caso é a USer 
+		inverseJoinColumns = @JoinColumn(name = "role_id"))	//-- Assossiação muitos p muitos se coloca o SET pois ele garante que não haverá repetição
 	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")

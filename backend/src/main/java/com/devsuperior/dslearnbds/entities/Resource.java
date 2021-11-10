@@ -27,9 +27,11 @@ public class Resource implements Serializable {
 	private String description;
 	private Integer position;
 	private String imgUri;
+	
+	//-- Tipo Enum(Enumerado) Criado da aula 05-07 Resource
 	private ResourceType type;
 	
-	@ManyToOne
+	@ManyToOne //-- Muitos para um
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
 

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_task")
-public class Task extends Lesson {
+public class Task extends Lesson { //-- extends significa que essa classe é uma herança de Lesson Aula 05-12 Lesson, Content, Task
 	private static final long serialVersionUID = 1L;
 
 	private String description;

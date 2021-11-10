@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_content")
-public class Content extends Lesson {
+public class Content extends Lesson { //-- extends significa que essa classe é uma herança de Lesson Aula 05-12 Lesson, Content, Task
 	private static final long serialVersionUID = 1L;
 
 	private String textContent;

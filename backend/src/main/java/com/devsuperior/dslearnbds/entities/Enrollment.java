@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
 
+//-- 05-09 Enrollment, EnrollmentPK
+
 @Entity
 @Table(name = "tb_enrollment")
 public class Enrollment {
@@ -27,7 +29,7 @@ public class Enrollment {
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant refundMoment;
-	private boolean available;
+	private boolean available; // boolean com b minusculo não permite nulo, ou é true ou false. Caso queira um campo que salve nulo, tem que usar "Boolean" com b maiúsculo
 	private boolean onlyUpdate;
 
 	@ManyToMany(mappedBy = "enrollmentsDone")
