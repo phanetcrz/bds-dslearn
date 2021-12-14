@@ -19,7 +19,7 @@ public class AuthService {
 	@Transactional(readOnly = true) // em uma operção q é somente leitura, tem que dizer explicitamente, para que essa operação não trave o bando de dados . 
 	public User authenticated() {
 		try {
-			String username = SecurityContextHolder.getContext().getAuthentication().getName(); //--pega o usuário que já foi reconhecido pelo spring security
+			String username = SecurityContextHolder.getContext().getAuthentication().getName(); //-- chamada estática que pega o usuário que já foi reconhecido pelo spring security
 			return userRepository.findByEmail(username);
 		}
 		catch(Exception e) {

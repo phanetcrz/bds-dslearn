@@ -7,3 +7,6 @@ public class UnauthorizedException extends RuntimeException {
 		super(msg);		
 	}
 }
+
+
+//-- Retorna o erro 401 - quando o usuário não tem token ou ele não foi reconhecido.

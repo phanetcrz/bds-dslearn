@@ -155,7 +155,7 @@ public class User implements UserDetails, Serializable {
 	}		
 
 	public boolean hasHole(String roleName) {
-		for (Role role : roles) {
+		for (Role role : roles) {   ///--Pra cada Role role na minha coleção de roles tem algum role vindo do parametro roleName
 			if (role.getAuthority().equals(roleName)) {
 				return true;
 			}

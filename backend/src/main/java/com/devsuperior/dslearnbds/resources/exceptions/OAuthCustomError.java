@@ -9,6 +9,7 @@ public class OAuthCustomError implements Serializable {
 	
 	private String error;
 	
+	//-- Annotation do jackson
 	@JsonProperty("error_description") //-- Aula 05-21 Autorização customizada em nível de serviço PARTE 1  - java camelcase enviando ao JSON convertido como snake case   
 	private String errorDescription; 
 	
