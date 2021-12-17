@@ -16,4 +16,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 			+ "(:unreadOnly = false OR obj.read = false)"
 			+ "ORDER BY obj.moment DESC")
 	Page<Notification> find(User user, boolean unreadOnly, Pageable pageable); //05-23 Conteúdo customizado para usuário logado  -  Retorna uma lista paginada
+	
+	//Page<Notification> findByUserAndReadOrderByMomentDesc(User user, boolean unreadOnly, Pageable pageable); //05-25 Query methods no Spring Data JPA  consulta usando o método o spring Data JPA
 }

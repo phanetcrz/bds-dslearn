@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -45,7 +46,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;  //Beans da WebSecurityConfig.java 
 	
 	@Autowired
-	private JwtTokenEnhancer tokenEnhancer;                //Component da JwtTokenEnhancer.java   
+	private JwtTokenEnhancer tokenEnhancer;                //Component da JwtTokenEnhancer.java
+	
+	@Autowired
+	private UserDetailsService userDetailsService;         // aula 05-26 Refresh Token
 	
 	//-- aula 04-23 -  é necessário sobreescrever 3 métodos de configure: botão direito/source/override implements methods
 	@Override
@@ -59,8 +63,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.withClient(clientId)           				 // nome da aplicação o Id dela
 		.secret(passwordEncoder.encode(clientSecret))    // Senha da aplicação
 		.scopes("read","write")                          // tipo de acesso se vai ser de leitura e escrita
-		.authorizedGrantTypes("password")                // Grant Type
-		.accessTokenValiditySeconds(jwtDuration);        // Tempo de validação do token, que no exemplo representa 24hrs
+		.authorizedGrantTypes("password", "refresh_token") // Grant Type  - refresh_token # aula 05-26 Refresh Token
+		.accessTokenValiditySeconds(jwtDuration)        // Tempo de validação do token, que no exemplo representa 24hrs
+		.refreshTokenValiditySeconds(jwtDuration);
 		
 	}
 
@@ -75,7 +80,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		endpoints.authenticationManager(authenticationManager)
 		.tokenStore(tokenStore) //objetos responsáveis por processar o token 
 		.accessTokenConverter(accessTokenConverter)
-		.tokenEnhancer(chain);
+		.tokenEnhancer(chain)
+		.userDetailsService(userDetailsService);
 	}
 	
 	
