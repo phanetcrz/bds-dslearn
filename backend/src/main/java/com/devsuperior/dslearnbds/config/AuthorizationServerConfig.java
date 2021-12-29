@@ -32,6 +32,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Value("${jwt.duration}")
 	private Integer jwtDuration;
 	
+	@Value("${jwt.durationRefreshToken}")
+	private Integer durationRefreshToken;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -65,7 +67,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.scopes("read","write")                          // tipo de acesso se vai ser de leitura e escrita
 		.authorizedGrantTypes("password", "refresh_token") // Grant Type  - refresh_token # aula 05-26 Refresh Token
 		.accessTokenValiditySeconds(jwtDuration)        // Tempo de validação do token, que no exemplo representa 24hrs
-		.refreshTokenValiditySeconds(jwtDuration);
+		.refreshTokenValiditySeconds(durationRefreshToken);
 		
 	}
 
@@ -81,7 +83,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.tokenStore(tokenStore) //objetos responsáveis por processar o token 
 		.accessTokenConverter(accessTokenConverter)
 		.tokenEnhancer(chain)
-		.userDetailsService(userDetailsService);
+		.userDetailsService(userDetailsService); // # aula 05-26 Refresh Token
 	}
 	
 	
